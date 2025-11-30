@@ -111,7 +111,7 @@ if captured_image is not None:
                 depth = pipe(roi)["depth"]
                 laplacian = cv2.Laplacian(np.array(depth), cv2.CV_64F)
                 score = laplacian.var()
-                print(score)
+                st.write(score)
                 if score < 20:
                     st.write('No depth- Fake QR')
                 else:
@@ -122,5 +122,6 @@ if captured_image is not None:
 
         else:
             st.error('Failed to detect QR region!!! Recapture the image.')
+
 
 
