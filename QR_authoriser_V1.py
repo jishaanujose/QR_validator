@@ -13,7 +13,7 @@ def load_depthanything_model():
     return pipe
 # pipe = pipeline(task="depth-estimation", model="./depthanything-v2")
 
-def depth_estimation(image):
+def depth_estimation(pipe,image):
     depth = pipe(image)["depth"]
     # cv2.imwrite('depth.png',np.array(depth))
     W_real = 5.1  # Real width of cardboard in cm (example)
@@ -107,7 +107,7 @@ if captured_image is not None:
                 insert_area = central_region[y:y + h_box, x:x + w_box]
                 roi=Image.fromarray(insert_area)
                 st.image(roi)
-                depth_metric=depth_estimation(roi)
+                depth_metric=depth_estimation(pipe,roi)
 
                 check = is_single_depth(depth_metric)
                 if check:
@@ -119,4 +119,5 @@ if captured_image is not None:
 
         else:
             st.error('Failed to detect QR region!!! Recapture the image.')
+
 
