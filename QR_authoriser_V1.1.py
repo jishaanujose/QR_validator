@@ -8,7 +8,7 @@ from transformers import pipeline
 def load_depthanything_model():
     pipe = pipeline(
         task="depth-estimation",
-        model="./depthanything-v2",   # your local directory
+        model="depth-anything/Depth-Anything-V2-Small-hf",   # your local directory
     )
     return pipe
 # pipe = pipeline(task="depth-estimation", model="./depthanything-v2")
@@ -47,8 +47,8 @@ st.title("📸 QR Capture Page")
 st.write("Point your camera at the QR code. Then click **Capture**.")
 
 # Streamlit camera input
-# captured_image = st.camera_input("Camera")
-captured_image=st.file_uploader('upload image')
+captured_image = st.camera_input("Camera")
+#captured_image=st.file_uploader('upload image')
 pipe= load_depthanything_model()
 if captured_image is not None:
     # Convert to OpenCV format
@@ -122,3 +122,4 @@ if captured_image is not None:
 
         else:
             st.error('Failed to detect QR region!!! Recapture the image.')
+
