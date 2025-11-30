@@ -59,8 +59,8 @@ if captured_image is not None:
     st.image(img, channels="RGB")
 
     # Save locally
-    # cv2.imwrite("captured_qr.png", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
-    # st.success("Image saved locally as captured_qr.png")
+    cv2.imwrite("captured_qr.png", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+    st.success("Image saved locally as captured_qr.png")
 
     if st.button("Upload"):
         detector = cv2.QRCodeDetector()
@@ -125,6 +125,7 @@ if captured_image is not None:
 
         else:
             st.error('Failed to detect QR region!!! Recapture the image.')
+
 
 
 
