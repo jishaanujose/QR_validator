@@ -109,6 +109,7 @@ if captured_image is not None:
                 st.image(roi)
                 # depth_metric=depth_estimation(roi)
                 depth = pipe(roi)["depth"]
+                st.image(np.array(depth))
                 laplacian = cv2.Laplacian(np.array(depth), cv2.CV_64F)
                 laplacian_display = np.uint8(np.absolute(laplacian))
                 st.image(laplacian_display)
@@ -124,6 +125,7 @@ if captured_image is not None:
 
         else:
             st.error('Failed to detect QR region!!! Recapture the image.')
+
 
 
 
